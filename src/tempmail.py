@@ -1,5 +1,5 @@
 class TempMail():
-    def __init__(self, email_id=0, inbox=0):
+    def __init__(self, email_id, inbox):
         self.__email_id=email_id
         self.__inbox=inbox
     
@@ -22,7 +22,7 @@ class TempMail():
         return self.__inbox.getEmail()
     
     def setEmailID(self, email_id):
-        self.__email_id=email_id
+        self.__email_id.setEmail(email_id)
 
     def delEmailID(self):
         del self.__email_id

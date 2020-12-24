@@ -1,5 +1,5 @@
 class EmailID():
-    def __init__(self, email_id):
+    def __init__(self, email_id=''):
         self.__email_id=email_id
     
     @property
