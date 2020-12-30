@@ -7,25 +7,24 @@ class TempMail():
     def email_id(self):
         return self.__email
     
-    @property
-    def email(self, msg_num=-1):
+    def getMail(self, msg_num=-1):
         return self.__inbox[msg_num]
 
-    def _add_mail(self, mail):
+    def addMail(self, mail):
         self.__inbox.putEmail(mail)
 
-    def refresh(self, mail):
-        return self._add_mail(mail)
-
     @property
-    def get_inbox(self):
+    def getInbox(self):
         return self.__inbox.getEmail()
     
     def setEmailID(self, email_id):
         self.__email_id.setEmail(email_id)
 
-    def delEmailID(self):
-        del self.__email_id
+    def resetInbox(self):
+        self.__inbox.resetInbox()
+
+    def resetEmail(self):
+        self.__email_id.resetEmail()
 
     def __del__(self):
         del self.__email_id
