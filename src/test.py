@@ -16,7 +16,7 @@ options.headless=True
 driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/driver", options=options)
 driver.set_window_size(1366, 728)
 
-t=TempMailAPI(driver_obj=driver)
+t=TempMailAPI(driver_obj=driver, timeout=1)
 # t.getSS("/home/shivanshu/Documents/Projects/PyTempMail/src/resource/screenshots/ss.png")
 # t.getEmail()
 # t.getInbox()

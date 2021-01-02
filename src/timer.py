@@ -6,5 +6,7 @@ class Clock():
     def terminate(self):
         self._running=False
     def run(self, n):
-        while self._running:
-            sleep(n)
+        i=n
+        while (self._running and i!=0):
+            sleep(1)
+            i-=1
