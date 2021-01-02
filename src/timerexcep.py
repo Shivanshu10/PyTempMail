@@ -1,0 +1,2 @@
+class TimerException(Exception):
+    pass

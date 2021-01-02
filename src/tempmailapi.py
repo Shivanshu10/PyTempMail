@@ -1,4 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from emailid import EmailID
 from tempmail import TempMail
 import consts
@@ -7,21 +7,14 @@ from inbox import Inbox
 from time import sleep
 from mail import Mail
 import logging
-from multiprocessing import Process
-
-class TimerException(Exception):
-    pass
+from threading import Thread
+from timer import Clock
+from timerexcep import TimerException
 
 class TempMailAPI():
     __URL=consts.URL
 
-    @staticmethod
-    def _timer(timeout):
-        logging.info("setting timeout clock")
-        sleep(timeout)
-        logging.info("timeout finish")
-
-    def __open(self, timeout, sleep`):
+    def __open(self):
         self.__driver.get(TempMailAPI.__URL)
         logging.info("opened site")
         self.__getEmail(self.timeout, self.sleep_time)
@@ -48,11 +41,12 @@ class TempMailAPI():
     def __getEmail(self, timeout, sleep_time):
         logging.info("Getting email")
         logging.info("staring timer process")
-        timer = Process(target=TempMailAPI._timer, args=(timeout,))
-        timer.start()
+        clock=Clock()
+        clock_thread=Thread(target=clock.run, args=(timeout,))
+        clock_thread.start()
         email=TempMailAPI._find_by_xpath(self.__driver, consts.email_selector) .get_attribute('value')
         while (email.startswith("Loading")):
-            if (timer.is_alive()==False):
+            if (clock_thread.is_alive()==False):
                 logging.info("Could not finish in given timeout")
                 raise TimerException("Couldn't finish task in given timeout")
             logging.info("dont found email")
@@ -63,13 +57,12 @@ class TempMailAPI():
         logging.debug(email)
         logging.info("Found email")
         logging.info("closing timer process")
-        timer.terminate()
+        clock.terminate()
         logging.info("associating email with object")
         self.__temp_mail.setEmailID(email)
         logging.info("associated email with object")
 
     def __init__(self, driver_obj, session=0, timeout=20, sleep_time=1):
-        logging.basicConfig(filename='pytempmail.log', level=logging.INFO)
         logging.info("creating api object")
         self.__driver=driver_obj
         self.timeout=timeout
