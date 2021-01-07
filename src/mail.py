@@ -37,6 +37,5 @@ class Mail():
 
     def __del__(self):
         del self.__from_id
-        del self.__to_id
         del self.__msg
         del self.__attach

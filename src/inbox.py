@@ -6,7 +6,16 @@ class Inbox():
         self.__inbox.append(mail)
 
     def getMail(self, mail_number):
-        return self.__inbox[mail_number]
+        try:
+            mail=self.__inbox[mail_number]
+            return mail
+        except IndexError:
+            raise IndexError
+
+    def ext(self, l):
+        del self.__inbox
+        self.__inbox=[]
+        self.__inbox.extend(l)
 
     @property
     def getInboxSize(self):

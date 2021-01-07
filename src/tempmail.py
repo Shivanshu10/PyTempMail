@@ -1,21 +1,35 @@
+from emailid import EmailID
+from inbox import Inbox
+
 class TempMail():
-    def __init__(self, email_id, inbox):
-        self.__email_id=email_id
-        self.__inbox=inbox
+    def __init__(self):
+        self.__email_id=EmailID()
+        self.__inbox=Inbox()
     
     @property
     def email_id(self):
-        return self.__email
+        return self.__email_id.email_id
+
+    @property
+    def inbox_size(self):
+        return self.__inbox.getInboxSize
     
-    def getMail(self, msg_num=-1):
-        return self.__inbox[msg_num]
+    def getMail(self, msg_num):
+        try:
+            mail=self.__inbox.getMail(msg_num)
+            return mail
+        except IndexError:
+            raise IndexError
 
     def addMail(self, mail):
-        self.__inbox.putEmail(mail)
+        self.__inbox.putMail(mail)
+
+    def ext(self, l):
+        self.__inbox.ext(l)
 
     @property
     def getInbox(self):
-        return self.__inbox.getEmail()
+        return self.__inbox.getMail()
     
     def setEmailID(self, email_id):
         self.__email_id.setEmail(email_id)
