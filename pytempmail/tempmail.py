@@ -1,5 +1,5 @@
-from emailid import EmailID
-from inbox import Inbox
+from pytempmail.emailid import EmailID
+from pytempmail.inbox import Inbox
 
 class TempMail():
     def __init__(self):

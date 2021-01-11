@@ -2,3 +2,6 @@ __pycache__
 resource
 pytempmail.log
 geckodriver.log
+build 
+dist
+PyTempMail.egg-info

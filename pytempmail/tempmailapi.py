@@ -1,12 +1,12 @@
 from selenium.common.exceptions import NoSuchElementException
-from tempmail import TempMail
-import consts
+from pytempmail.tempmail import TempMail
+import pytempmail.consts as consts
 from time import sleep
-from mail import Mail
+from pytempmail.mail import Mail
 import logging
 from threading import Thread
-from timer import Clock
-from excep import TimerException, MailNumOutOfRange
+from pytempmail.timer import Clock
+from pytempmail.excep import TimerException, MailNumOutOfRange
 
 class TempMailAPI():
     __URL=consts.URL

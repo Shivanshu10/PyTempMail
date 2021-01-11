@@ -1,4 +1,4 @@
-from tempmailapi import TempMailAPI
+import pytempmail
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from time import sleep
