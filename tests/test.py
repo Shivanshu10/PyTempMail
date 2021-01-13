@@ -1,4 +1,4 @@
-import pytempmail
+from pytempmail.tempmailapi import * 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from time import sleep
@@ -14,28 +14,28 @@ options.headless=False
 
 # driver=webdriver.Firefox(profile, options=options, executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/geckodriver")
 #driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/driver")
-driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/driver", options=options)
+driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/resource/geckodriver", options=options)
 driver.set_window_size(1366, 728)
 
 
 t=TempMailAPI(driver_obj=driver, timeout=50)
 
 # print email id
-# print(t.email_id)
+print(t.email_id)
 
 # get SS
-# t.getSS("/home/shivanshu/Documents/Projects/PyTempMail/src/resource/screenshots/ss.png")
+t.getSS("/home/shivanshu/Documents/Projects/PyTempMail/ss.png")
 
 # get browser session
-# print(t.session_id)
+print(t.session_id)
 
 # delete current email and get a new one
-# t.delEmail()
-# print(t.email_id)
+#t.delEmail()
+#print(t.email_id)
 
 # get two email id both working
-# driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/driver", options=options)
-# driver.set_window_size(1366, 728)
+#driver=webdriver.Firefox(executable_path="/home/shivanshu/Documents/Projects/PyTempMail/src/resource/geckodriver/linux_64/driver", options=options)
+#driver.set_window_size(1366, 728)
 # t=TempMailAPI(driver_obj=driver, timeout=50)
 # print(t.email_id)
 
